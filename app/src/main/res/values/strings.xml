@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">My Application</string>
+
+    <string name="lambda">Kotlin Lambad表达式使用</string>
+    <string name="no_parameter">无参</string>
+    <string name="have_parameter">有参</string>
+    <string name="lambda_as_parameter">Lambda表达式作为函数参数</string>
+</resources>
