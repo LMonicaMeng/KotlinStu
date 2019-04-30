@@ -1,5 +1,6 @@
 package com.example.myapplication
 
+import android.os.Build
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
@@ -31,12 +32,38 @@ class KotlinLambdaActivity : AppCompatActivity() {
         lambdaAsParameter()
         //4、it并不是Kotlin中的关键字，高阶函数Lambda表达式只有一个参数，用it代替
         aboutIt()
+        //5、使用Lambda表达式可以用下划线"_"表示未处理的参数，表示不处理该参数
+        aboutUnderline()
     }
+   //遍历map时下划线非常有用
+    private fun aboutUnderline() {
+     val map = mapOf("key1" to "value","key2" to "value2","key3" to "value3")
+       if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+           map.forEach{
+               key,value ->println("$key \\t $value")
+           }
+
+           map.forEach{
+               _,value ->
+               println("$value")
+           }
+       }
+   }
+
     //Kotlin中的it
     private fun aboutIt() {
      //it不是关键字，可用于变量名称
         val it:Int = 0
 
+        val arr = arrayOf(1,3,5,7,9)
+       println(arr.filter { it<5 }.component1())
+
+        fun test(num1:Int,bool:(Int)->Boolean):Int{
+            return if(bool(num1))num1 else 0
+        }
+
+        println(test(10,{it >5}))
+        println(test(4,{it>5}))
     }
 
     //Lambda表达式作为函数中的参数
@@ -50,7 +77,7 @@ class KotlinLambdaActivity : AppCompatActivity() {
             return m + n
         }
         //调用
-        test(10, sum(3, 5))
+        println(test(10, sum(3, 5)))
 
         //Lambda表达式写法(高阶函数，只提供参数，调用时需要具体实现)
         //invoke（）函数：通过函数变量调用自身
@@ -59,7 +86,7 @@ class KotlinLambdaActivity : AppCompatActivity() {
         }
 
         //调用
-        test(10,{num1, num2 -> num1+num2 })
+        println(test(10,{num1, num2 -> num1+num2 }))
     }
 
     //有参数，举两个参数的例子
@@ -73,7 +100,7 @@ class KotlinLambdaActivity : AppCompatActivity() {
         //Lambda表达式写法二
         val test = { a: Int, b: Int -> a + b }
         //调用
-        test(3, 5)
+        println(test(3, 5))
     }
 
     //无参数
@@ -85,6 +112,6 @@ class KotlinLambdaActivity : AppCompatActivity() {
         //Lambda表达式
         val test = println("无参数")
         //调用
-        test()
+        println(test())
     }
 }
