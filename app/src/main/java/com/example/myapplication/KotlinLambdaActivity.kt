@@ -56,7 +56,7 @@ class KotlinLambdaActivity : AppCompatActivity() {
         val it:Int = 0
 
         val arr = arrayOf(1,3,5,7,9)
-       println(arr.filter { it<5 }.component1())
+//       println(arr.filter { it<5 }.component1())
 
         fun test(num1:Int,bool:(Int)->Boolean):Int{
             return if(bool(num1))num1 else 0
